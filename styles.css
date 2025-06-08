@@ -64,156 +64,153 @@ html, body {
 @media (max-width: 768px) {
     /* Ajustes para body en mobile: flexbox principal */
     html, body {
-        /* Para que el hero-section pueda centrarse y luego expandirse */
-        display: flex; /* Mantener flex para centrar hero-section */
-        flex-direction: column; /* Apila el contenido principal si es necesario */
-        overflow-y: auto; /* Permitimos scroll vertical si el contenido excede la pantalla */
-        height: auto; /* La altura se adaptará al contenido */
-        min-height: 100vh; /* Asegura que al menos ocupe la altura de la pantalla */
+        display: flex !important; /* Fuerza el display flex para el body */
+        flex-direction: column !important; /* Fuerza la dirección de la columna */
+        overflow-y: auto !important; /* Fuerza el scroll vertical */
+        height: auto !important; /* Fuerza la altura automática */
+        min-height: 100vh !important; /* Fuerza la altura mínima del viewport */
     }
 
     .hero-section {
-        flex-direction: column; /* Apila las columnas verticalmente */
-        height: auto; /* Se ajusta a la altura del contenido */
-        padding: 40px 0; /* Espacio arriba y abajo, un poco menos */
-        width: 100%; /* Ocupa todo el ancho */
-        max-width: none; /* No hay límite de ancho para móviles */
-        justify-content: flex-start; /* Empieza desde arriba */
-        align-items: center; /* Centra los elementos apilados */
+        flex-direction: column !important; /* Fuerza a apilar las columnas */
+        height: auto !important; /* Altura automática */
+        padding: 40px 0 !important; /* Padding ajustado */
+        width: 100% !important; /* Ocupa todo el ancho */
+        max-width: none !important; /* Sin límite de ancho */
+        justify-content: flex-start !important; /* Empieza desde arriba */
+        align-items: center !important; /* Centra los elementos apilados */
     }
 
     .column-item {
-        width: 90%; /* Aumentamos a 90% para que las tarjetas ocupen más espacio en móvil */
-        height: 220px; /* Ajustamos la altura para hacerlos más compactos, pero visibles */
-        margin-bottom: 20px; /* Espacio entre columnas apiladas */
+        width: 90% !important; /* Fuerza el ancho de las tarjetas */
+        height: 220px !important; /* Fuerza la altura de las tarjetas */
+        margin-bottom: 20px !important; /* Espacio entre columnas */
     }
 
     .column-text {
-        font-size: 6vw; /* Aumentamos el tamaño de fuente para que sea más legible en móvil */
+        font-size: 7vw !important; /* Fuerza el tamaño de fuente con vw */
     }
 
     /* Ajustes para la sección detallada en móviles */
     .detail-section {
-        padding: 10px; /* Menos padding en los bordes para móviles */
-        top: 0% !important; /* Fuerza a estar arriba cuando se activa para móviles */
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        position: fixed;
-        display: flex;
-        flex-direction: column;
-        justify-content: center; /* Centra el detail-content verticalmente */
-        align-items: center; /* Centra el detail-content horizontalmente */
-        overflow-y: hidden; /* El scroll del contenido se maneja dentro de sub-panel */
-        overflow-x: hidden;
+        padding: 10px !important;
+        top: 0% !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        position: fixed !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        overflow-y: hidden !important;
+        overflow-x: hidden !important;
     }
     .detail-content {
-        padding: 15px; /* Más compacto en móvil */
-        height: 90vh; /* Ocupa más altura de la pantalla del móvil */
-        width: 95%; /* Ocupa casi todo el ancho disponible */
-        max-width: none; /* Sin límite de ancho para móviles */
-        box-sizing: border-box;
+        padding: 15px !important;
+        height: 90vh !important;
+        width: 95% !important;
+        max-width: none !important;
+        box-sizing: border-box !important;
     }
     .detail-panel {
-        padding: 0; /* Aseguramos que no haya padding aquí, lo maneja sub-panel */
-        /* text-align: center; <-- Se quitó de aquí, controlado por sub-panel */
+        padding: 0 !important;
     }
     .sub-panel {
-        padding: 10px 15px; /* Padding lateral más pequeño y un poco de padding vertical */
-        text-align: center;
-        overflow-y: auto; /* ¡MUY IMPORTANTE! Permite el scroll dentro del sub-panel */
-        -webkit-overflow-scrolling: touch; /* Mejora el rendimiento del scroll en iOS */
-        display: flex;
-        flex-direction: column;
-        justify-content: center; /* Centra el contenido verticalmente en sub-panel */
-        align-items: center; /* Centra el contenido horizontalmente en sub-panel */
+        padding: 10px 15px !important;
+        text-align: center !important;
+        overflow-y: auto !important; /* ¡MUY IMPORTANTE! Permite el scroll dentro del sub-panel */
+        -webkit-overflow-scrolling: touch !important; /* Mejora el rendimiento del scroll en iOS */
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
     }
 
     /* ---------------------------------------------------- */
     /* Ajustes de TAMAÑO DE TEXTO GENERAL PARA SUB-PANELES en móviles */
     /* ---------------------------------------------------- */
     .sub-panel h3 {
-        font-size: 1.5em; /* Ajuste para h3 general en móvil: más pequeño */
-        margin-bottom: 8px;
-        line-height: 1.2;
+        font-size: 5vw !important; /* Ajuste a vw para escalado agresivo */
+        margin-bottom: 8px !important;
+        line-height: 1.2 !important;
     }
     .sub-panel p {
-        font-size: 0.8em; /* Ajuste para p general en móvil: más pequeño */
-        line-height: 1.4;
-        margin-bottom: 6px;
+        font-size: 3.5vw !important; /* Ajuste a vw para escalado agresivo */
+        line-height: 1.4 !important;
+        margin-bottom: 6px !important;
     }
 
     /* Ajustes específicos para el layout de canciones en móviles */
     .sub-panel.song-layout {
-        flex-direction: column; /* Apila imagen y texto en pantallas pequeñas */
-        align-items: center; /* Centra los elementos (imagen y texto) */
-        text-align: center; /* Centramos el contenedor song-layout en móviles */
-        padding: 10px; /* Ajusta el padding para la disposición apilada */
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        padding: 10px !important;
     }
 
     .song-image-container {
-        width: 60%;
-        max-width: 120px; /* Límite para que no sea demasiado grande */
-        margin-right: 0;
-        margin-bottom: 10px;
+        width: 60% !important;
+        max-width: 120px !important;
+        margin-right: 0 !important;
+        margin-bottom: 10px !important;
     }
 
     .play-button {
-        position: static;
-        opacity: 1;
-        margin-top: 5px;
-        font-size: 0.75em; /* Un poco más pequeño para el botón */
-        padding: 4px 7px;
+        position: static !important;
+        opacity: 1 !important;
+        margin-top: 5px !important;
+        font-size: 3vw !important; /* También con vw */
+        padding: 4px 7px !important;
     }
 
     .song-text {
-        width: 100%; /* Ocupa todo el ancho */
-        align-items: center;
+        width: 100% !important;
+        align-items: center !important;
     }
 
     .song-text h3 {
-        font-size: 1.2em; /* Título de canción más pequeño */
-        margin-bottom: 5px;
-        text-align: center;
+        font-size: 4.5vw !important; /* Con vw */
+        margin-bottom: 5px !important;
+        text-align: center !important;
     }
 
     .song-text p {
-        font-size: 0.7em; /* Párrafo de canción más pequeño */
-        line-height: 1.2;
-        text-align: center;
+        font-size: 3vw !important; /* Con vw */
+        line-height: 1.2 !important;
+        text-align: center !important;
     }
 
     /* Flechas y botón de cerrar en móviles */
     .close-button {
-        top: 10px;
-        right: 10px;
-        font-size: 1.8em; /* Más pequeña la X de cerrar */
+        top: 10px !important;
+        right: 10px !important;
+        font-size: 1.8em !important;
     }
     .sub-carousel-arrow {
-        font-size: 1.3em; /* Flechas más pequeñas */
-        padding: 4px 7px;
+        font-size: 1.3em !important;
+        padding: 4px 7px !important;
     }
     .sub-left-arrow {
-        left: 5px;
+        left: 5px !important;
     }
     .sub-right-arrow {
-        right: 5px;
+        right: 5px !important;
     }
 
     /* ---------------------------------------------------- */
     /* Sobreescribe para la clase centered-small-text en móviles */
-    /* Esta clase ya era para texto pequeño, ahora lo haremos más pequeño aún en móvil */
     /* ---------------------------------------------------- */
     h3.centered-small-text {
-        font-size: 1.2em; /* Más pequeño para texto "centrado pequeño" en móvil */
-        margin-bottom: 5px;
+        font-size: 4.2vw !important; /* Con vw */
+        margin-bottom: 5px !important;
     }
 
     p.centered-small-text {
-        font-size: 0.65em; /* Más pequeño para párrafo "centrado pequeño" en móvil */
-        line-height: 1.2;
-        padding: 0;
-        margin-bottom: 5px;
+        font-size: 2.8vw !important; /* Con vw */
+        line-height: 1.2 !important;
+        padding: 0 !important;
+        margin-bottom: 5px !important;
     }
 } /* Fin del media query */
 
@@ -474,7 +471,5 @@ p.centered-small-text {
 }
 
 .close-button:hover {
-    color: #333;
-}
     color: #333;
 }
