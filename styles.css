@@ -3,14 +3,14 @@ html, body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
     height: 100vh;
-    width: 100vw; /* Asegura que ocupe todo el ancho del viewport */
+    width: 100vw;
     overflow-x: hidden; /* Evita el scroll horizontal no deseado en el body */
     overflow-y: auto; /* Permite el scroll vertical en el body si el contenido es largo */
-    display: flex;
+    display: flex; /* Se mantiene para centrar el contenido principal */
     justify-content: center;
     align-items: center;
     background-color: #f0f0f0;
-    box-sizing: border-box; /* Asegura que padding y border no aumenten el tamaño */
+    box-sizing: border-box;
 }
 
 /* Sección Principal (hero-section) */
@@ -22,7 +22,7 @@ html, body {
     max-width: 1200px;
     height: 80vh;
     gap: 30px;
-    box-sizing: border-box; /* Importante para el cálculo del tamaño */
+    box-sizing: border-box;
 }
 
 /* Cada Columna/Espacio en la sección principal */
@@ -34,7 +34,7 @@ html, body {
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     cursor: pointer;
-    box-sizing: border-box; /* Importante para el cálculo del tamaño */
+    box-sizing: border-box;
 }
 
 .column-item img {
@@ -50,7 +50,7 @@ html, body {
     left: 50%;
     transform: translate(-50%, -50%);
     color: #fff;
-    font-size: 2.5vw;
+    font-size: 2.5vw; /* Usa 'vw' para un tamaño de fuente responsivo */
     font-weight: 700;
     text-align: center;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
@@ -65,44 +65,45 @@ html, body {
     /* Ajustes para body en mobile: flexbox principal */
     html, body {
         /* Para que el hero-section pueda centrarse y luego expandirse */
-        display: block; /* Quitamos el display flex para que el hero-section tome control */
+        display: flex; /* Mantener flex para centrar hero-section */
+        flex-direction: column; /* Apila el contenido principal si es necesario */
         overflow-y: auto; /* Permitimos scroll vertical si el contenido excede la pantalla */
         height: auto; /* La altura se adaptará al contenido */
+        min-height: 100vh; /* Asegura que al menos ocupe la altura de la pantalla */
     }
 
     .hero-section {
-        flex-direction: column;
+        flex-direction: column; /* Apila las columnas verticalmente */
         height: auto; /* Se ajusta a la altura del contenido */
-        padding: 50px 0;
+        padding: 40px 0; /* Espacio arriba y abajo, un poco menos */
         width: 100%; /* Ocupa todo el ancho */
         max-width: none; /* No hay límite de ancho para móviles */
-        justify-content: center; /* Centra los elementos apilados */
+        justify-content: flex-start; /* Empieza desde arriba */
         align-items: center; /* Centra los elementos apilados */
     }
 
     .column-item {
         width: 90%; /* Aumentamos a 90% para que las tarjetas ocupen más espacio en móvil */
-        height: 250px; /* Ajustamos la altura para hacerlos más compactos */
-        margin-bottom: 20px; /* Reducimos el margen inferior */
+        height: 220px; /* Ajustamos la altura para hacerlos más compactos, pero visibles */
+        margin-bottom: 20px; /* Espacio entre columnas apiladas */
     }
 
     .column-text {
-        font-size: 7vw; /* Aumentamos el tamaño de fuente para que sea más legible en móvil */
+        font-size: 6vw; /* Aumentamos el tamaño de fuente para que sea más legible en móvil */
     }
 
     /* Ajustes para la sección detallada en móviles */
     .detail-section {
-        padding: 15px;
+        padding: 10px; /* Menos padding en los bordes para móviles */
         top: 0% !important; /* Fuerza a estar arriba cuando se activa para móviles */
         left: 0;
-        width: 100vw; /* Asegura el 100% del ancho del viewport */
-        height: 100vh; /* Asegura el 100% de la altura del viewport */
-        position: fixed; /* Mantiene la sección detallada anclada */
-        /* Asegurarse que la animación de GSAP tenga top: 0% */
-        display: flex; /* Para centrar el detail-content */
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        justify-content: center; /* Centra el detail-content verticalmente */
+        align-items: center; /* Centra el detail-content horizontalmente */
         overflow-y: hidden; /* El scroll del contenido se maneja dentro de sub-panel */
         overflow-x: hidden;
     }
@@ -114,27 +115,45 @@ html, body {
         box-sizing: border-box;
     }
     .detail-panel {
-        padding: 0;
+        padding: 0; /* Aseguramos que no haya padding aquí, lo maneja sub-panel */
         /* text-align: center; <-- Se quitó de aquí, controlado por sub-panel */
     }
     .sub-panel {
-        padding: 0 15px; /* Padding lateral aún más pequeño para los sub-paneles en móviles */
+        padding: 10px 15px; /* Padding lateral más pequeño y un poco de padding vertical */
         text-align: center;
         overflow-y: auto; /* ¡MUY IMPORTANTE! Permite el scroll dentro del sub-panel */
         -webkit-overflow-scrolling: touch; /* Mejora el rendimiento del scroll en iOS */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Centra el contenido verticalmente en sub-panel */
+        align-items: center; /* Centra el contenido horizontalmente en sub-panel */
+    }
+
+    /* ---------------------------------------------------- */
+    /* Ajustes de TAMAÑO DE TEXTO GENERAL PARA SUB-PANELES en móviles */
+    /* ---------------------------------------------------- */
+    .sub-panel h3 {
+        font-size: 1.5em; /* Ajuste para h3 general en móvil: más pequeño */
+        margin-bottom: 8px;
+        line-height: 1.2;
+    }
+    .sub-panel p {
+        font-size: 0.8em; /* Ajuste para p general en móvil: más pequeño */
+        line-height: 1.4;
+        margin-bottom: 6px;
     }
 
     /* Ajustes específicos para el layout de canciones en móviles */
     .sub-panel.song-layout {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+        flex-direction: column; /* Apila imagen y texto en pantallas pequeñas */
+        align-items: center; /* Centra los elementos (imagen y texto) */
+        text-align: center; /* Centramos el contenedor song-layout en móviles */
         padding: 10px; /* Ajusta el padding para la disposición apilada */
     }
 
     .song-image-container {
-        width: 60%; /* La imagen ocupa más espacio en móviles */
-        max-width: 150px; /* Límite para que no sea demasiado grande */
+        width: 60%;
+        max-width: 120px; /* Límite para que no sea demasiado grande */
         margin-right: 0;
         margin-bottom: 10px;
     }
@@ -143,8 +162,8 @@ html, body {
         position: static;
         opacity: 1;
         margin-top: 5px;
-        font-size: 0.8em;
-        padding: 5px 8px;
+        font-size: 0.75em; /* Un poco más pequeño para el botón */
+        padding: 4px 7px;
     }
 
     .song-text {
@@ -153,37 +172,26 @@ html, body {
     }
 
     .song-text h3 {
-        font-size: 1.3em; /* Un poco más pequeño */
+        font-size: 1.2em; /* Título de canción más pequeño */
         margin-bottom: 5px;
         text-align: center;
     }
 
     .song-text p {
-        font-size: 0.8em;
-        line-height: 1.2; /* Línea más compacta */
+        font-size: 0.7em; /* Párrafo de canción más pequeño */
+        line-height: 1.2;
         text-align: center;
-    }
-
-    /* Tamaños de fuente generales para sub-paneles en móviles */
-    .sub-panel h3 {
-        font-size: 1.6em; /* Ajuste para h3 general en móvil */
-        margin-bottom: 8px;
-    }
-    .sub-panel p {
-        font-size: 0.85em; /* Ajuste para p general en móvil */
-        line-height: 1.4;
-        margin-bottom: 6px;
     }
 
     /* Flechas y botón de cerrar en móviles */
     .close-button {
-        top: 10px; /* Más cerca de la esquina */
+        top: 10px;
         right: 10px;
-        font-size: 2em;
+        font-size: 1.8em; /* Más pequeña la X de cerrar */
     }
     .sub-carousel-arrow {
-        font-size: 1.5em; /* Flechas más pequeñas */
-        padding: 5px 8px;
+        font-size: 1.3em; /* Flechas más pequeñas */
+        padding: 4px 7px;
     }
     .sub-left-arrow {
         left: 5px;
@@ -192,21 +200,26 @@ html, body {
         right: 5px;
     }
 
+    /* ---------------------------------------------------- */
     /* Sobreescribe para la clase centered-small-text en móviles */
+    /* Esta clase ya era para texto pequeño, ahora lo haremos más pequeño aún en móvil */
+    /* ---------------------------------------------------- */
     h3.centered-small-text {
-        font-size: 1.3em;
-        margin-bottom: 6px;
+        font-size: 1.2em; /* Más pequeño para texto "centrado pequeño" en móvil */
+        margin-bottom: 5px;
     }
 
     p.centered-small-text {
-        font-size: 0.7em;
+        font-size: 0.65em; /* Más pequeño para párrafo "centrado pequeño" en móvil */
         line-height: 1.2;
         padding: 0;
-        margin-bottom: 6px;
+        margin-bottom: 5px;
     }
 } /* Fin del media query */
 
-/* Resto de estilos de escritorio */
+
+/* Resto de estilos de escritorio (fuera de la media query) */
+
 /* Estilos para la Nueva Sección Detallada (detail-section) - ESCRITORIO */
 .detail-section {
     position: fixed;
@@ -253,7 +266,7 @@ html, body {
     visibility: hidden;
     opacity: 0;
     transform: translateY(20px);
-    position: absolute; /* Permite que el carrusel interno los mueva */
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -263,7 +276,7 @@ html, body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Contiene el carrusel interno */
+    overflow: hidden;
 }
 
 /* Nuevo contenedor para los sub-paneles del carrusel interno */
@@ -278,17 +291,17 @@ html, body {
 
 /* Cada sub-panel (las "caras" dentro de cada sección) - ESCRITORIO */
 .sub-panel {
-    min-width: 100%; /* Cada sub-panel ocupa el 100% del ancho del carrusel */
-    flex-shrink: 0; /* Evita que los sub-paneles se encojan */
+    min-width: 100%;
+    flex-shrink: 0;
     height: 100%;
     box-sizing: border-box;
-    padding: 0 60px; /* Padding lateral para el contenido */
+    padding: 0 60px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center; /* Centra el texto por defecto en sub-paneles */
-    overflow-y: auto; /* Permite scroll vertical si el contenido excede la altura */
+    text-align: center;
+    overflow-y: auto;
 }
 
 /* Estilos para imágenes dentro de los sub-paneles */
@@ -300,10 +313,10 @@ html, body {
     margin-bottom: 15px;
 }
 
-/* Estilos de texto generales para h3 en sub-paneles */
+/* Estilos de texto generales para h3 en sub-paneles - ESCRITORIO */
 .sub-panel h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 2.5em;
+    font-size: 2.5em; /* Tamaño de escritorio */
     margin-bottom: 15px;
     color: #4a4a4a;
     line-height: 1.2;
@@ -311,10 +324,10 @@ html, body {
     overflow-wrap: break-word;
 }
 
-/* Estilos de texto generales para p en sub-paneles */
+/* Estilos de texto generales para p en sub-paneles - ESCRITORIO */
 .sub-panel p {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.0em;
+    font-size: 1.0em; /* Tamaño de escritorio */
     line-height: 1.6;
     margin-bottom: 10px;
     color: #333;
@@ -324,7 +337,7 @@ html, body {
     max-width: 100%;
 }
 
-/* CLASE EXCLUSIVA: centered-small-text (Para texto más pequeño y centrado) */
+/* CLASE EXCLUSIVA: centered-small-text (Para texto más pequeño y centrado) - ESCRITORIO */
 .centered-small-text {
     text-align: center;
     margin-left: auto;
@@ -334,13 +347,13 @@ html, body {
 }
 
 h3.centered-small-text {
-    font-size: 1.8em;
+    font-size: 1.8em; /* Tamaño de escritorio */
     margin-bottom: 12px;
     line-height: 1.2;
 }
 
 p.centered-small-text {
-    font-size: 0.85em;
+    font-size: 0.85em; /* Tamaño de escritorio */
     line-height: 1.4;
     padding: 0;
     margin-bottom: 10px;
@@ -461,5 +474,7 @@ p.centered-small-text {
 }
 
 .close-button:hover {
+    color: #333;
+}
     color: #333;
 }
