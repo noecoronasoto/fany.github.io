@@ -61,59 +61,150 @@ html, body {
 /* ---------------------------------------------------- */
 /* MEDIA QUERIES PARA RESPONSIVIDAD (MENOS DE 768px ANCHO) */
 /* ---------------------------------------------------- */
-@media (max-width: 480px) {
-  .column-text {
-    font-size: 6vw;
-    padding: 5px;
-  }
+@media (max-width: 768px) {
+    /* Ajustes para body en mobile: flexbox principal */
+    html, body {
+        /* Para que el hero-section pueda centrarse y luego expandirse */
+        display: block; /* Quitamos el display flex para que el hero-section tome control */
+        overflow-y: auto; /* Permitimos scroll vertical si el contenido excede la pantalla */
+        height: auto; /* La altura se adaptará al contenido */
+    }
 
-  .detail-content {
-    padding: 10px;
-    height: 95vh;
-    width: 98vw;
-    overflow: hidden;
-  }
+    .hero-section {
+        flex-direction: column;
+        height: auto; /* Se ajusta a la altura del contenido */
+        padding: 50px 0;
+        width: 100%; /* Ocupa todo el ancho */
+        max-width: none; /* No hay límite de ancho para móviles */
+        justify-content: center; /* Centra los elementos apilados */
+        align-items: center; /* Centra los elementos apilados */
+    }
 
-  .sub-panel {
-    padding: 10px;
-    overflow-y: auto;
-    font-size: 0.9em;
-  }
+    .column-item {
+        width: 90%; /* Aumentamos a 90% para que las tarjetas ocupen más espacio en móvil */
+        height: 250px; /* Ajustamos la altura para hacerlos más compactos */
+        margin-bottom: 20px; /* Reducimos el margen inferior */
+    }
 
-  .sub-panel img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-  }
+    .column-text {
+        font-size: 7vw; /* Aumentamos el tamaño de fuente para que sea más legible en móvil */
+    }
 
-  .sub-panel h3 {
-    font-size: 1.4em;
-  }
+    /* Ajustes para la sección detallada en móviles */
+    .detail-section {
+        padding: 15px;
+        top: 0% !important; /* Fuerza a estar arriba cuando se activa para móviles */
+        left: 0;
+        width: 100vw; /* Asegura el 100% del ancho del viewport */
+        height: 100vh; /* Asegura el 100% de la altura del viewport */
+        position: fixed; /* Mantiene la sección detallada anclada */
+        /* Asegurarse que la animación de GSAP tenga top: 0% */
+        display: flex; /* Para centrar el detail-content */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow-y: hidden; /* El scroll del contenido se maneja dentro de sub-panel */
+        overflow-x: hidden;
+    }
+    .detail-content {
+        padding: 15px; /* Más compacto en móvil */
+        height: 90vh; /* Ocupa más altura de la pantalla del móvil */
+        width: 95%; /* Ocupa casi todo el ancho disponible */
+        max-width: none; /* Sin límite de ancho para móviles */
+        box-sizing: border-box;
+    }
+    .detail-panel {
+        padding: 0;
+        /* text-align: center; <-- Se quitó de aquí, controlado por sub-panel */
+    }
+    .sub-panel {
+        padding: 0 15px; /* Padding lateral aún más pequeño para los sub-paneles en móviles */
+        text-align: center;
+        overflow-y: auto; /* ¡MUY IMPORTANTE! Permite el scroll dentro del sub-panel */
+        -webkit-overflow-scrolling: touch; /* Mejora el rendimiento del scroll en iOS */
+    }
 
-  .sub-panel p {
-    font-size: 0.9em;
-    line-height: 1.5;
-  }
+    /* Ajustes específicos para el layout de canciones en móviles */
+    .sub-panel.song-layout {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 10px; /* Ajusta el padding para la disposición apilada */
+    }
 
-  .song-layout {
-    flex-direction: column !important;
-    text-align: center;
-    padding: 10px !important;
-  }
+    .song-image-container {
+        width: 60%; /* La imagen ocupa más espacio en móviles */
+        max-width: 150px; /* Límite para que no sea demasiado grande */
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
 
-  .song-image-container {
-    width: 80%;
-    margin: auto;
-    margin-bottom: 10px;
-  }
+    .play-button {
+        position: static;
+        opacity: 1;
+        margin-top: 5px;
+        font-size: 0.8em;
+        padding: 5px 8px;
+    }
 
-  .song-text {
-    width: 100%;
-    padding: 0;
-    font-size: 0.9em;
-  }
-}
- /* Fin del media query */
+    .song-text {
+        width: 100%; /* Ocupa todo el ancho */
+        align-items: center;
+    }
+
+    .song-text h3 {
+        font-size: 1.3em; /* Un poco más pequeño */
+        margin-bottom: 5px;
+        text-align: center;
+    }
+
+    .song-text p {
+        font-size: 0.8em;
+        line-height: 1.2; /* Línea más compacta */
+        text-align: center;
+    }
+
+    /* Tamaños de fuente generales para sub-paneles en móviles */
+    .sub-panel h3 {
+        font-size: 1.6em; /* Ajuste para h3 general en móvil */
+        margin-bottom: 8px;
+    }
+    .sub-panel p {
+        font-size: 0.85em; /* Ajuste para p general en móvil */
+        line-height: 1.4;
+        margin-bottom: 6px;
+    }
+
+    /* Flechas y botón de cerrar en móviles */
+    .close-button {
+        top: 10px; /* Más cerca de la esquina */
+        right: 10px;
+        font-size: 2em;
+    }
+    .sub-carousel-arrow {
+        font-size: 1.5em; /* Flechas más pequeñas */
+        padding: 5px 8px;
+    }
+    .sub-left-arrow {
+        left: 5px;
+    }
+    .sub-right-arrow {
+        right: 5px;
+    }
+
+    /* Sobreescribe para la clase centered-small-text en móviles */
+    h3.centered-small-text {
+        font-size: 1.3em;
+        margin-bottom: 6px;
+    }
+
+    p.centered-small-text {
+        font-size: 0.7em;
+        line-height: 1.2;
+        padding: 0;
+        margin-bottom: 6px;
+    }
+} /* Fin del media query */
 
 /* Resto de estilos de escritorio */
 /* Estilos para la Nueva Sección Detallada (detail-section) - ESCRITORIO */
