@@ -1,0 +1,465 @@
+/* Generales */
+html, body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+    width: 100vw; /* Asegura que ocupe todo el ancho del viewport */
+    overflow-x: hidden; /* Evita el scroll horizontal no deseado en el body */
+    overflow-y: auto; /* Permite el scroll vertical en el body si el contenido es largo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    box-sizing: border-box; /* Asegura que padding y border no aumenten el tamaño */
+}
+
+/* Sección Principal (hero-section) */
+.hero-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    height: 80vh;
+    gap: 30px;
+    box-sizing: border-box; /* Importante para el cálculo del tamaño */
+}
+
+/* Cada Columna/Espacio en la sección principal */
+.column-item {
+    position: relative;
+    width: 30%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    box-sizing: border-box; /* Importante para el cálculo del tamaño */
+}
+
+.column-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.column-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 2.5vw;
+    font-weight: 700;
+    text-align: center;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    z-index: 2;
+    opacity: 1;
+}
+
+/* ---------------------------------------------------- */
+/* MEDIA QUERIES PARA RESPONSIVIDAD (MENOS DE 768px ANCHO) */
+/* ---------------------------------------------------- */
+@media (max-width: 768px) {
+    /* Ajustes para body en mobile: flexbox principal */
+    html, body {
+        /* Para que el hero-section pueda centrarse y luego expandirse */
+        display: block; /* Quitamos el display flex para que el hero-section tome control */
+        overflow-y: auto; /* Permitimos scroll vertical si el contenido excede la pantalla */
+        height: auto; /* La altura se adaptará al contenido */
+    }
+
+    .hero-section {
+        flex-direction: column;
+        height: auto; /* Se ajusta a la altura del contenido */
+        padding: 50px 0;
+        width: 100%; /* Ocupa todo el ancho */
+        max-width: none; /* No hay límite de ancho para móviles */
+        justify-content: center; /* Centra los elementos apilados */
+        align-items: center; /* Centra los elementos apilados */
+    }
+
+    .column-item {
+        width: 90%; /* Aumentamos a 90% para que las tarjetas ocupen más espacio en móvil */
+        height: 250px; /* Ajustamos la altura para hacerlos más compactos */
+        margin-bottom: 20px; /* Reducimos el margen inferior */
+    }
+
+    .column-text {
+        font-size: 7vw; /* Aumentamos el tamaño de fuente para que sea más legible en móvil */
+    }
+
+    /* Ajustes para la sección detallada en móviles */
+    .detail-section {
+        padding: 15px;
+        top: 0% !important; /* Fuerza a estar arriba cuando se activa para móviles */
+        left: 0;
+        width: 100vw; /* Asegura el 100% del ancho del viewport */
+        height: 100vh; /* Asegura el 100% de la altura del viewport */
+        position: fixed; /* Mantiene la sección detallada anclada */
+        /* Asegurarse que la animación de GSAP tenga top: 0% */
+        display: flex; /* Para centrar el detail-content */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow-y: hidden; /* El scroll del contenido se maneja dentro de sub-panel */
+        overflow-x: hidden;
+    }
+    .detail-content {
+        padding: 15px; /* Más compacto en móvil */
+        height: 90vh; /* Ocupa más altura de la pantalla del móvil */
+        width: 95%; /* Ocupa casi todo el ancho disponible */
+        max-width: none; /* Sin límite de ancho para móviles */
+        box-sizing: border-box;
+    }
+    .detail-panel {
+        padding: 0;
+        /* text-align: center; <-- Se quitó de aquí, controlado por sub-panel */
+    }
+    .sub-panel {
+        padding: 0 15px; /* Padding lateral aún más pequeño para los sub-paneles en móviles */
+        text-align: center;
+        overflow-y: auto; /* ¡MUY IMPORTANTE! Permite el scroll dentro del sub-panel */
+        -webkit-overflow-scrolling: touch; /* Mejora el rendimiento del scroll en iOS */
+    }
+
+    /* Ajustes específicos para el layout de canciones en móviles */
+    .sub-panel.song-layout {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 10px; /* Ajusta el padding para la disposición apilada */
+    }
+
+    .song-image-container {
+        width: 60%; /* La imagen ocupa más espacio en móviles */
+        max-width: 150px; /* Límite para que no sea demasiado grande */
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .play-button {
+        position: static;
+        opacity: 1;
+        margin-top: 5px;
+        font-size: 0.8em;
+        padding: 5px 8px;
+    }
+
+    .song-text {
+        width: 100%; /* Ocupa todo el ancho */
+        align-items: center;
+    }
+
+    .song-text h3 {
+        font-size: 1.3em; /* Un poco más pequeño */
+        margin-bottom: 5px;
+        text-align: center;
+    }
+
+    .song-text p {
+        font-size: 0.8em;
+        line-height: 1.2; /* Línea más compacta */
+        text-align: center;
+    }
+
+    /* Tamaños de fuente generales para sub-paneles en móviles */
+    .sub-panel h3 {
+        font-size: 1.6em; /* Ajuste para h3 general en móvil */
+        margin-bottom: 8px;
+    }
+    .sub-panel p {
+        font-size: 0.85em; /* Ajuste para p general en móvil */
+        line-height: 1.4;
+        margin-bottom: 6px;
+    }
+
+    /* Flechas y botón de cerrar en móviles */
+    .close-button {
+        top: 10px; /* Más cerca de la esquina */
+        right: 10px;
+        font-size: 2em;
+    }
+    .sub-carousel-arrow {
+        font-size: 1.5em; /* Flechas más pequeñas */
+        padding: 5px 8px;
+    }
+    .sub-left-arrow {
+        left: 5px;
+    }
+    .sub-right-arrow {
+        right: 5px;
+    }
+
+    /* Sobreescribe para la clase centered-small-text en móviles */
+    h3.centered-small-text {
+        font-size: 1.3em;
+        margin-bottom: 6px;
+    }
+
+    p.centered-small-text {
+        font-size: 0.7em;
+        line-height: 1.2;
+        padding: 0;
+        margin-bottom: 6px;
+    }
+} /* Fin del media query */
+
+/* Resto de estilos de escritorio */
+/* Estilos para la Nueva Sección Detallada (detail-section) - ESCRITORIO */
+.detail-section {
+    position: fixed;
+    top: 100%; /* Inicialmente fuera de la vista */
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #fff;
+    color: #333;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    visibility: hidden;
+    opacity: 0;
+}
+
+/* Contenido dentro de la sección detallada - ESCRITORIO */
+.detail-content {
+    max-width: 800px;
+    width: 90%;
+    height: 80%;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Importante para el carrusel interno */
+    position: relative;
+}
+
+/* Cada detail-panel (los paneles principales de cada sección) - ESCRITORIO */
+.detail-panel {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    position: absolute; /* Permite que el carrusel interno los mueva */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Contiene el carrusel interno */
+}
+
+/* Nuevo contenedor para los sub-paneles del carrusel interno */
+.sub-carousel-inner {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Cada sub-panel (las "caras" dentro de cada sección) - ESCRITORIO */
+.sub-panel {
+    min-width: 100%; /* Cada sub-panel ocupa el 100% del ancho del carrusel */
+    flex-shrink: 0; /* Evita que los sub-paneles se encojan */
+    height: 100%;
+    box-sizing: border-box;
+    padding: 0 60px; /* Padding lateral para el contenido */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Centra el texto por defecto en sub-paneles */
+    overflow-y: auto; /* Permite scroll vertical si el contenido excede la altura */
+}
+
+/* Estilos para imágenes dentro de los sub-paneles */
+.sub-panel-image {
+    max-width: 100%;
+    max-height: 70%;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Estilos de texto generales para h3 en sub-paneles */
+.sub-panel h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    color: #4a4a4a;
+    line-height: 1.2;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Estilos de texto generales para p en sub-paneles */
+.sub-panel p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.0em;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    color: #333;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+}
+
+/* CLASE EXCLUSIVA: centered-small-text (Para texto más pequeño y centrado) */
+.centered-small-text {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 95%;
+    box-sizing: border-box;
+}
+
+h3.centered-small-text {
+    font-size: 1.8em;
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+p.centered-small-text {
+    font-size: 0.85em;
+    line-height: 1.4;
+    padding: 0;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+/* ESTILOS ESPECÍFICOS PARA EL LAYOUT DE CANCIONES/PENSAMIENTOS (ESCRITORIO) */
+.sub-panel.song-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    padding: 20px;
+}
+
+.song-image-container {
+    position: relative;
+    width: 30%;
+    max-width: 150px;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.song-image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    display: block;
+    object-fit: contain;
+}
+
+.play-button {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.song-image-container:hover .play-button {
+    opacity: 1;
+}
+
+.play-button i {
+    margin-right: 3px;
+}
+
+.song-text {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.song-text h3 {
+    font-size: 1.6em;
+    margin-top: 0;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.song-text p {
+    font-size: 0.9em;
+    line-height: 1.4;
+    text-align: left;
+}
+
+/* Flechas de navegación del sub-carrusel (dentro de cada detail-panel) */
+.sub-carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    font-size: 2em;
+    padding: 8px 12px;
+    cursor: pointer;
+    z-index: 2;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.sub-carousel-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.sub-left-arrow {
+    left: 10px;
+}
+
+.sub-right-arrow {
+    right: 10px;
+}
+
+/* Botón de cerrar */
+.close-button {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: none;
+    border: none;
+    font-size: 2.5em;
+    color: #888;
+    cursor: pointer;
+    z-index: 101;
+    transition: color 0.3s ease-out;
+}
+
+.close-button:hover {
+    color: #333;
+}
